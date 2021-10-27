@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
-public class RecursiveRay : MonoBehaviour {
+
+public class RecursiveRay : MonoBehaviour
+{
 	[SerializeField]LayerMask layerMask = 1;
 	[SerializeField]float maxRayTravel = 20f;
 	RaycastHit hit;
+	
 	public bool increaserays = false;
-	void OnValidate(){
+	void OnValidate()
+	{
 		if(increaserays)
 		{
 			increaserays = false;
@@ -14,16 +18,19 @@ public class RecursiveRay : MonoBehaviour {
 
 	}
 
-	IEnumerator RayIncrease(){
+	IEnumerator RayIncrease()
+	{
 		while(maxRayTravel < 50f){
 			maxRayTravel += Time.deltaTime * 5;
 			yield return null;
 		}
 	}
 
-	void Update(){
+	void Update()
+	{
 		Vector3 rot = transform.localEulerAngles;
-		for(int i = 0; i < 360; i++){
+		for(int i = 0; i < 360; i++)
+		{
 			transform.localEulerAngles = new Vector3(rot.x, (float)i, rot.z);
 			RaycastRecursion(transform.position, transform.forward, maxRayTravel, new Color(1f,1f,1f));
 			Debug.Log(transform.forward);
@@ -31,7 +38,8 @@ public class RecursiveRay : MonoBehaviour {
 		transform.localEulerAngles = rot;
 	}
 
-	void RaycastRecursion(Vector3 position, Vector3 dir, float maxDist, Color col){
+	void RaycastRecursion(Vector3 position, Vector3 dir, float maxDist, Color col)
+	{
 		if(Physics.Raycast(position, dir, out hit, maxDist, layerMask)) 
 		{
 			float dist = Vector3.Distance(position, hit.point);
