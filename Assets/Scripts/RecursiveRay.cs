@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [ExecuteAlways]
@@ -50,6 +50,7 @@ public class RecursiveRay : MonoBehaviour
 			col.g -= 0.25f; col.b -= 0.25f;
 		}
 	}
+  
 	void Raycast(ref Vector3 position, ref Vector3 dir, ref float maxDist, Color col)
 	{
 		if (Physics.Raycast(position, dir, out hit, maxDist, layerMask))
