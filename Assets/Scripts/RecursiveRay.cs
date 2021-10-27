@@ -1,4 +1,3 @@
-﻿//RecursiveRaycast test by Invertex
 using UnityEngine;
 using System.Collections;
 public class RecursiveRay : MonoBehaviour {
